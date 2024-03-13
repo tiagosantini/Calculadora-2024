@@ -81,6 +81,21 @@
 
                 else if (operacao == "4")
                 {
+                    // checar se o segundo número é 0
+
+                    while (segundoNumero == 0)
+                    {
+                        // caso for 0, pedir para o usuário digitar de novo
+                        Console.WriteLine("Segundo número não pode ser ZERO, tente novamente!");
+
+                        Console.ReadLine();
+
+                        Console.WriteLine("Digite o segundo número novamente: ");
+
+                        segundoNumero = Convert.ToInt32(Console.ReadLine());
+                    }
+
+                    // caso não, divir
                     resultado = primeiroNumero / segundoNumero;
                 }
 
