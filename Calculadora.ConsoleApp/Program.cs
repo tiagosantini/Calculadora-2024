@@ -45,8 +45,18 @@
 
                 string operacao = Console.ReadLine();
 
-                if (operacao == "S")
+                // || = comparação não obrigatória (só um precisa ser verdadeiro) 
+                if (operacao == "S" || operacao == "s")
                     break;
+
+                // && = comparação obrigatória
+                if (operacao != "1" && operacao != "2" && operacao != "3" && operacao != "4" && operacao != "S" && operacao != "s")
+                {
+                    Console.WriteLine("Operação inválida, tente novamente...");
+                    Console.ReadLine();
+
+                    continue;
+                }
 
                 Console.WriteLine("Digite o primeiro número:");
 
