@@ -12,7 +12,7 @@
     // Nossa calculadora deve ter a possibilidade de fazer várias operações de soma e de subtração
 
     // Requisito 04 
-    // Nossa calculadora deve ter a possibilidade fazer as quatro operações básicas da matemática
+    // Nossa calculadora deve ter a possibilidade de fazer as quatro operações básicas da matemática
 
     // Com experiência
 
@@ -38,6 +38,7 @@
 
                 Console.WriteLine("Digite 1 para Adicionar");
                 Console.WriteLine("Digite 2 para Subtrair");
+                Console.WriteLine("Digite 3 para Multiplicar");
 
                 Console.WriteLine("Digite S para sair");
 
@@ -72,6 +73,10 @@
                     resultado = primeiroNumero - segundoNumero;
                 }
 
+                else if (operacao == "3")
+                {
+                    resultado = primeiroNumero * segundoNumero;
+                }
 
                 Console.WriteLine("O resultado é: " + resultado);
 
