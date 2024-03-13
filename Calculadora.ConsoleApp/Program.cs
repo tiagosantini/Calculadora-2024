@@ -64,15 +64,15 @@
 
                 primeiroNumeroString = Console.ReadLine();
 
-                int primeiroNumero = Convert.ToInt32(primeiroNumeroString);
+                double primeiroNumero = Convert.ToDouble(primeiroNumeroString);
 
                 Console.WriteLine("Digite o segundo número:");
 
                 string segundoNumeroString = Console.ReadLine();
 
-                int segundoNumero = Convert.ToInt32(segundoNumeroString);
+                double segundoNumero = Convert.ToDouble(segundoNumeroString);
 
-                int resultado = 0;
+                double resultado = 0;
 
                 if (operacao == "1")
                 {
