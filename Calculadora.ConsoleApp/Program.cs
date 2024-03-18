@@ -1,4 +1,6 @@
-﻿namespace Calculadora.ConsoleApp
+﻿using System.Runtime.ExceptionServices;
+
+namespace Calculadora.ConsoleApp
 {
     // Iniciantes
 
@@ -25,6 +27,9 @@
     // Requisito 07
     // Nossa calculadora deve realizar as operações com números com duas casas decimais
 
+    // Requisito 08
+    // Dado um número, nossa calculadora deve ser capaz de gerar a tabuada do mesmo até o 10
+
     // Variáveis
     internal class Program
     {
@@ -32,70 +37,95 @@
         {
             while (true)
             {
-                Console.Clear();
-
-                Console.WriteLine("Calculadora Tabajara 2024\n");
-
-                Console.WriteLine("Digite 1 para Adicionar");
-                Console.WriteLine("Digite 2 para Subtrair");
-                Console.WriteLine("Digite 3 para Multiplicar");
-                Console.WriteLine("Digite 4 para Dividir");
-
-                Console.WriteLine("Digite S para sair");
-
-                string operacao = Console.ReadLine();
-
-                // || = comparação não obrigatória (só um precisa ser verdadeiro) 
-                if (operacao == "S" || operacao == "s")
+                string opcao = MostrarMenu();
+                
+                if (opcao == "S" || opcao == "s")
                     break;
 
-                // && = comparação obrigatória
-                if (operacao != "1" && operacao != "2" && operacao != "3" && operacao != "4" && operacao != "S" && operacao != "s")
+                if (OpcaoInvalida(opcao))
                 {
-                    Console.WriteLine("Operação inválida, tente novamente...");
-                    Console.ReadLine();
-
+                    ExibirMensagemErro();
                     continue;
                 }
 
-                Console.WriteLine("Digite o primeiro número:");
+                else if (opcao == "5")
+                    GerarTabuada();
+                
+                else
+                    RealizarCalculo(opcao);
+            }
+        }
 
-                string primeiroNumeroString = "";
+        static string MostrarMenu()
+        {
+            Console.Clear();
 
-                primeiroNumeroString = Console.ReadLine();
+            Console.WriteLine("Calculadora Tabajara 2024\n");
 
-                double primeiroNumero = Convert.ToDouble(primeiroNumeroString);
+            Console.WriteLine("Digite 1 para Adicionar");
+            Console.WriteLine("Digite 2 para Subtrair");
+            Console.WriteLine("Digite 3 para Multiplicar");
+            Console.WriteLine("Digite 4 para Dividir");
+            Console.WriteLine("Digite 5 para Gerar a Tabuada de um Número");
 
-                Console.WriteLine("Digite o segundo número:");
+            Console.WriteLine("Digite S para sair");
 
-                string segundoNumeroString = Console.ReadLine();
+            string opcao = Console.ReadLine();
 
-                double segundoNumero = Convert.ToDouble(segundoNumeroString);
+            return opcao;
+        }
 
-                double resultado = 0;
+        static bool OpcaoInvalida(string opcao)
+        {
+            bool opcaoInvalida =
+                opcao != "1" &&
+                opcao != "2" &&
+                opcao != "3" &&
+                opcao != "4" &&
+                opcao != "5" &&
+                opcao != "S" &&
+                opcao != "s";
 
-                if (operacao == "1")
-                {
+            return opcaoInvalida;
+        }
+
+        static void ExibirMensagemErro()
+        {
+            Console.WriteLine("Operação inválida, tente novamente...");
+            Console.ReadLine();
+        }
+
+        static void RealizarCalculo(string opcao)
+        {
+            Console.WriteLine("Digite o primeiro número:");
+
+            double primeiroNumero = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Digite o segundo número:");
+
+            string segundoNumeroString = Console.ReadLine();
+
+            double segundoNumero = Convert.ToDouble(segundoNumeroString);
+
+            double resultado = 0;
+
+            switch (opcao) {
+                case "1":
                     resultado = primeiroNumero + segundoNumero;
-                }
+                    break;
 
-                else if (operacao == "2")
-                {
+                case "2":
                     resultado = primeiroNumero - segundoNumero;
-                }
+                    break;
 
-                else if (operacao == "3")
-                {
+                case "3":
                     resultado = primeiroNumero * segundoNumero;
-                }
+                    break;
 
-                else if (operacao == "4")
-                {
-                    // checar se o segundo número é 0
+                case "4":
 
                     while (segundoNumero == 0)
                     {
-                        // caso for 0, pedir para o usuário digitar de novo
                         Console.WriteLine("Segundo número não pode ser ZERO, tente novamente!");
 
                         Console.ReadLine();
@@ -105,14 +135,43 @@
                         segundoNumero = Convert.ToInt32(Console.ReadLine());
                     }
 
-                    // caso não, divir
                     resultado = primeiroNumero / segundoNumero;
-                }
-
-                Console.WriteLine("O resultado é: " + resultado);
-
-                Console.ReadLine();
+                    break;
             }
+
+            ExibirResultado(resultado);
         }
+
+        static void ExibirResultado(double resultado)
+        {
+            Console.WriteLine("O resultado é: " + resultado);
+
+            Console.ReadLine();
+        }
+
+        static void GerarTabuada()
+        {
+            Console.Write("Digite o número para gerar a tabuada: ");
+
+            int tabuada = Convert.ToInt32(Console.ReadLine());          
+
+            for (int i = 1; i <= 10; i++)
+            {
+                int resto = i % 2;
+
+                if (resto == 0)
+                    Console.BackgroundColor = ConsoleColor.Red;
+                else
+                    Console.BackgroundColor = ConsoleColor.Black;
+
+                int resultadoMultiplicacao = tabuada * i;
+
+                Console.WriteLine(tabuada + " x " + i + " = " + resultadoMultiplicacao);
+            }
+
+            Console.ReadLine();
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
     }
 }
