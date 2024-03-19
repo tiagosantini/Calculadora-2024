@@ -37,4 +37,4 @@ Calculdora.ConsoleApp.exe
 
 ## Requisitos
 
-- .NET SDK (recomendado .NET 5.0 ou superior) para compilação e execução do projeto.
+- .NET SDK (recomendado .NET 8.0 ou superior) para compilação e execução do projeto.
