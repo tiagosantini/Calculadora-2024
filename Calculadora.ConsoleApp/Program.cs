@@ -138,6 +138,7 @@ namespace Calculadora.ConsoleApp
 
         static void ExibirResultado(double resultado)
         {
+            Console.WriteLine("O resultado da operação é: " + resultado);
             Console.ReadLine();
         }
 
