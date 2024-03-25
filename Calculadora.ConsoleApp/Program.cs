@@ -1,4 +1,6 @@
-﻿namespace Calculadora.ConsoleApp
+﻿using System.Runtime.ExceptionServices;
+
+namespace Calculadora.ConsoleApp
 {
     // Iniciantes
 
@@ -25,6 +27,9 @@
     // Requisito 07
     // Nossa calculadora deve realizar as operações com números com duas casas decimais
 
+    // Requisito 08
+    // Dado um número, nossa calculadora deve ser capaz de gerar a tabuada do mesmo até o 10
+
     // Variáveis
     internal class Program
     {
@@ -32,24 +37,25 @@
         {
             while (true)
             {
-                string operacao = MostrarMenu();
-
-                if (OpcaoSaidaSelecionada(operacao))
+                string opcao = MostrarMenu();
+                
+                if (opcao == "S" || opcao == "s")
                     break;
 
-                else if (OpcaoInvalida(operacao))
+                if (OpcaoInvalida(opcao))
                 {
                     ExibirMensagemErro();
                     continue;
                 }
 
+                else if (opcao == "5")
+                    GerarTabuada();
+                
                 else
-                    RealizarCalculo(operacao);
+                    RealizarCalculo(opcao);
             }
         }
 
-        // procedimento = conjunto de instruções que executam em sequência
-        // função = procedimento que retorna um valor
         static string MostrarMenu()
         {
             Console.Clear();
@@ -60,25 +66,25 @@
             Console.WriteLine("Digite 2 para Subtrair");
             Console.WriteLine("Digite 3 para Multiplicar");
             Console.WriteLine("Digite 4 para Dividir");
+            Console.WriteLine("Digite 5 para Gerar a Tabuada de um Número");
 
             Console.WriteLine("Digite S para sair");
 
-            string operacao = Console.ReadLine();
+            string opcao = Console.ReadLine();
 
-            return operacao;
+            return opcao;
         }
-
-        // parâmetros / argumentos
-        static bool OpcaoSaidaSelecionada(string opcao)
-        {
-            bool opcaoSaidaSelecionada = opcao == "S" || opcao == "s";
-
-            return opcaoSaidaSelecionada;
-        }
-
+                    break;
         static bool OpcaoInvalida(string opcao)
         {
-            bool opcaoInvalida = opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "S" && opcao != "s";
+            bool opcaoInvalida =
+                opcao != "1" &&
+                opcao != "2" &&
+                opcao != "3" &&
+                opcao != "4" &&
+                opcao != "5" &&
+                opcao != "S" &&
+                opcao != "s";
 
             return opcaoInvalida;
         }
@@ -88,22 +94,24 @@
             Console.WriteLine("Operação inválida, tente novamente...");
             Console.ReadLine();
         }
-
-        static void RealizarCalculo(string operacao)
+                }
+        static void RealizarCalculo(string opcao)
         {
             Console.WriteLine("Digite o primeiro número:");
+                Console.WriteLine("Digite o primeiro número:");
 
             double primeiroNumero = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Digite o segundo número:");
+            string segundoNumeroString = Console.ReadLine();
 
-            double segundoNumero = Convert.ToDouble(Console.ReadLine());
+            double segundoNumero = Convert.ToDouble(segundoNumeroString);
+                double segundoNumero = Convert.ToDouble(segundoNumeroString);
 
             double resultado = 0;
-
-            switch (operacao)
-            {
+            switch (opcao) {
                 case "1":
+                {
                     resultado = primeiroNumero + segundoNumero;
                     break;
 
@@ -112,8 +120,12 @@
                     break;
 
                 case "3":
-                    resultado = primeiroNumero * segundoNumero;
                     break;
+
+                case "4":
+                else if (operacao == "4")
+                {
+                    // checar se o segundo número é 0
 
                 case "4":
                     while (segundoNumero == 0)
@@ -135,10 +147,35 @@
         }
 
         static void ExibirResultado(double resultado)
+            Console.ReadLine();
+        }
+
+        static void GerarTabuada()
         {
-            Console.WriteLine("O resultado é: " + resultado);
+            Console.Write("Digite o número para gerar a tabuada: ");
+
+            int tabuada = Convert.ToInt32(Console.ReadLine());          
+
+            for (int i = 1; i <= 10; i++)
+            {
+                int resto = i % 2;
+
+                if (resto == 0)
+                    Console.BackgroundColor = ConsoleColor.Red;
+                else
+                    Console.BackgroundColor = ConsoleColor.Black;
+
+                int resultadoMultiplicacao = tabuada * i;
+
+                Console.WriteLine(tabuada + " x " + i + " = " + resultadoMultiplicacao);
+            }
 
             Console.ReadLine();
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+    }
+}
         }
     }
 }
