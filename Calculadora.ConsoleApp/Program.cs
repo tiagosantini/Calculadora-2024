@@ -74,7 +74,7 @@ namespace Calculadora.ConsoleApp
 
             return opcao;
         }
-                    break;
+
         static bool OpcaoInvalida(string opcao)
         {
             bool opcaoInvalida =
@@ -94,24 +94,18 @@ namespace Calculadora.ConsoleApp
             Console.WriteLine("Operação inválida, tente novamente...");
             Console.ReadLine();
         }
-                }
+
         static void RealizarCalculo(string opcao)
         {
             Console.WriteLine("Digite o primeiro número:");
-                Console.WriteLine("Digite o primeiro número:");
-
             double primeiroNumero = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Digite o segundo número:");
-            string segundoNumeroString = Console.ReadLine();
-
-            double segundoNumero = Convert.ToDouble(segundoNumeroString);
-                double segundoNumero = Convert.ToDouble(segundoNumeroString);
+            double segundoNumero = Convert.ToDouble(Console.ReadLine());
 
             double resultado = 0;
             switch (opcao) {
                 case "1":
-                {
                     resultado = primeiroNumero + segundoNumero;
                     break;
 
@@ -120,12 +114,8 @@ namespace Calculadora.ConsoleApp
                     break;
 
                 case "3":
+                    resultado = primeiroNumero * segundoNumero;
                     break;
-
-                case "4":
-                else if (operacao == "4")
-                {
-                    // checar se o segundo número é 0
 
                 case "4":
                     while (segundoNumero == 0)
@@ -147,6 +137,7 @@ namespace Calculadora.ConsoleApp
         }
 
         static void ExibirResultado(double resultado)
+        {
             Console.ReadLine();
         }
 
@@ -174,8 +165,5 @@ namespace Calculadora.ConsoleApp
             Console.BackgroundColor = ConsoleColor.Black;
         }
 
-    }
-}
-        }
     }
 }
